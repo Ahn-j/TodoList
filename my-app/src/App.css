@@ -1,13 +1,44 @@
 .TodoList_Layout {
   background: #fff;
-  margin: 2rem 0 4rem 0;
+  margin: 2rem 35rem;
   padding: 1rem;
   position: relative;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 405px;
+  height: 650px;
+}
+.TodoList_text{
+  width: 380px;
+  height: 35px;
+  margin: 10px;
 }
 .TodoList_btn{
-  width: 50px;
+  width: 385px;
 }
+.TodoList_btn_List{
+  margin-top: 5px;
+}
+.TodoList_Smallbtn{
+  width: 100px;
+
+}
+.TodoList_Smallbtn[aria-pressed="true"]{
+  width: 100px;
+  background-color: rgb(31, 31, 34);
+}
+.TodoList{
+  width: 100%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+
+}
+.List{
+  height: 0px;
+}
+ul{
+  list-style:none;
+  }
 
 
 .App-logo {
