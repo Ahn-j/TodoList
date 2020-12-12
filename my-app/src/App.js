@@ -38,9 +38,8 @@ class App extends React.Component {
     let { input, todoList } = this.state;
     //서브밋 이벤트 방지
     e.preventDefault();
-    //console.log("asd"+this.state.id)
     if(input === ""){
-      alert("할 일을 입력해주세요")
+      alert("할 일을 입력해주세요QQQQ")
     }
     else
     this.setState({ 
