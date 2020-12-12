@@ -9,6 +9,8 @@ class App extends React.Component {
     this.state = {
       id:3,
       input:"",
+      pressed: false,
+      checked: false,
       todoList:[
       {id:1 , text:"아침먹기"},
       {id:2 , text:"점심먹기"}  
@@ -16,16 +18,31 @@ class App extends React.Component {
     }
   }
   handleChangeText = e => {
+    
     this.setState({ 
       input: e.target.value 
       });
     }
 
-  handleClick = e => {
-    const { input, todoList } = this.state;
+  handleClickClick = e => {
+    let { pressed } = this.state;
     //서브밋 이벤트 방지
     e.preventDefault();
-    console.log("asd"+this.state.id)
+    console.log("e.target   "+e.target)
+    console.log("asd  d   "+pressed)
+    this.setState({ 
+      pressed: !pressed
+    });
+   }
+   handleClick = e => {
+    let { input, todoList } = this.state;
+    //서브밋 이벤트 방지
+    e.preventDefault();
+    //console.log("asd"+this.state.id)
+    if(input === ""){
+      alert("할 일을 입력해주세요")
+    }
+    else
     this.setState({ 
       input:"",
       todoList: todoList.concat({
@@ -35,9 +52,16 @@ class App extends React.Component {
     });
    }
 
-  
+  onCheckboxChangeHandler = id =>{
+    //console.log("wdwdwdwd  "+e.target.checked )
+    console.log("id  "+id )
+    // this.setState({ 
+    //   checked: !this.state.checked
+    // });
+   }
   render(){
-    console.log(this.state.todoList)
+   
+    let {todoList,pressed,checked} = this.state
     return (
       <div className = "TodoList_Layout">
         <h1>---------TodoList---------</h1>
@@ -49,16 +73,23 @@ class App extends React.Component {
             </Button>
           </form>  
             <div className = "TodoList_btn_List">
-              <Button className = "TodoList_Smallbtn" type="submit" variant="outlined" color="primary" aria-pressed="true">ALL</Button>
-              <Button className = "TodoList_Smallbtn" type="submit" variant="outlined" color="primary">ACTIVE</Button>
-              <Button className = "TodoList_Smallbtn" type="submit" variant="outlined" color="primary">COMPLETED</Button>
+              <Button className = "TodoList_Smallbtn" type="submit" variant="outlined" color="primary" aria-pressed={pressed} onClick={this.handleClickClick}>ALL</Button>
+              <Button className = "TodoList_Smallbtn" type="submit" variant="outlined" color="primary" aria-pressed={pressed} onClick={this.handleClickClick}>ACTIVE</Button>
+              <Button className = "TodoList_Smallbtn" type="submit" variant="outlined" color="primary" aria-pressed={pressed} onClick={this.handleClickClick}>COMPLETED</Button>
             </div>
+            <h2>{todoList.length} tasks remaining</h2>
             <div className = "TodoList">
-                {this.state.todoList.map((v,i)=>{
+                {todoList.map((v,i)=>{
                   return(
                     <ListItem key={v.id}>
                       <ul>
-                        <li className="List">{v.text}</li>
+                        
+                        <li className="List">
+                        <input type="checkbox" onChange ={this.onCheckboxChangeHandler(v.id)}
+                       />
+                          {v.text}
+                        </li>
+                    
                       </ul>
                     </ListItem>
                   );  
